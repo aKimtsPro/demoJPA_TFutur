@@ -31,7 +31,6 @@ public class DemoOptional {
         poke2 = optRempli.orElseThrow(); // pareil que get
         poke2 = optRempli.orElseThrow(IllegalArgumentException::new); // Si vide -> lance l'exception créée par la lambda
 
-
         // Utilities
 
         optRempli.ifPresent(System.out::println); // si present, execute l'action
