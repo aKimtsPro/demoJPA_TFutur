@@ -1,7 +1,6 @@
 package bstrom.akim.demoJPA.dao;
 
-import bstrom.akim.demoJPA.entities.Pokemon;
-import org.springframework.beans.factory.annotation.Autowired;
+import bstrom.akim.demoJPA.entities.RacePokemon;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -21,6 +20,6 @@ public class PokemonDAO {
     }
 
     public Object getOne(Object id){
-        return manager.find(Pokemon.class, id);
+        return manager.find(RacePokemon.class, id);
     }
 }

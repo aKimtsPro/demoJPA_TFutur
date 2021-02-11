@@ -1,32 +1,29 @@
 package bstrom.akim.demoJPA;
 
-import bstrom.akim.demoJPA.entities.Pokemon;
+import bstrom.akim.demoJPA.entities.RacePokemon;
 
-import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.BinaryOperator;
-import java.util.function.UnaryOperator;
 
 public class DemoOptional {
 
     public static void main(String[] args) {
 
-        Pokemon poke = Pokemon.builder()
+        RacePokemon poke = RacePokemon.builder()
                 .numeroPokedex(1)
                 .nom("bulbizarre")
                 .build();
 
         // Creation d'Optional
 
-        Optional<Pokemon> optVide = Optional.empty();
-        Optional<Pokemon> optRempli = Optional.of(poke);
-        Optional<Pokemon> optOnSaitPas = Optional.ofNullable(null);
+        Optional<RacePokemon> optVide = Optional.empty();
+        Optional<RacePokemon> optRempli = Optional.of(poke);
+        Optional<RacePokemon> optOnSaitPas = Optional.ofNullable(null);
 
         // Récupérer la valeur à l'intérieur
 
-        Pokemon poke2 = optRempli.get(); // crash si l'optional est vide
-        poke2 = optRempli.orElse(new Pokemon()); // Donne un backup si l'optional est vide
-        poke2 = optRempli.orElseGet(Pokemon::new); // Donne une methode pouvant creer un backup si l'optional est vide
+        RacePokemon poke2 = optRempli.get(); // crash si l'optional est vide
+        poke2 = optRempli.orElse(new RacePokemon()); // Donne un backup si l'optional est vide
+        poke2 = optRempli.orElseGet(RacePokemon::new); // Donne une methode pouvant creer un backup si l'optional est vide
         optRempli = optRempli.or(() -> Optional.of(poke)); // Donne une methode pouvant créer un backup de l'optional si il est vide
         poke2 = optRempli.orElseThrow(); // pareil que get
         poke2 = optRempli.orElseThrow(IllegalArgumentException::new); // Si vide -> lance l'exception créée par la lambda

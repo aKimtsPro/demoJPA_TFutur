@@ -1,24 +1,33 @@
 package bstrom.akim.demoJPA.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.function.Supplier;
+import java.util.List;
 
 @Entity
-@Data // = @Getter + @Setter + @ToString + @EqualsAndHashcode
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pokemon {
 
     @Id
-    @Column(name = "numero_dex") // n'ecrase pas le nullable et unique inhérent à l'@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
-    private int numeroPokedex;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @NonNull
-    @Column(name = "nom_pokemon", columnDefinition = "VARCHAR(40)", nullable = false, unique = true)
-    private String nom;
+    @Column
+    private String surnom;
+
+    @ManyToOne
+    private Dresseur dresseur;
+
+    @ManyToOne
+    private RacePokemon race;
+
+    @ManyToMany
+    private List<AttaquePkmn> attaques;
 }
